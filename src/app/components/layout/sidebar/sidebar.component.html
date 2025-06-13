@@ -1,0 +1,46 @@
+<div class="sidebar" [class.collapsed]="isCollapsed">
+  <div class="sidebar-header">
+    <button class="toggle-btn" (click)="toggleSidebar()">
+      <i class="material-icons">{{ isCollapsed ? 'menu' : 'menu_open' }}</i>
+    </button>
+    <div class="logo" *ngIf="!isCollapsed">
+      <span>Mecatool</span>
+    </div>
+  </div>
+
+  <nav class="sidebar-nav" *ngIf="authService.isAuthenticated()">
+    <a *ngFor="let item of menuItems" 
+       [routerLink]="item.route" 
+       routerLinkActive="active"
+       [routerLinkActiveOptions]="{ exact: item.route === '/' }"
+       class="nav-item">
+      <i class="material-icons">{{ item.icon }}</i>
+      <span *ngIf="!isCollapsed">{{ item.label }}</span>
+    </a>
+
+    <!-- Admin Menu Items -->
+    <div class="admin-section" *ngIf="isAdmin">
+      <div class="admin-header" *ngIf="!isCollapsed">
+        <span>Admin</span>
+      </div>
+      <a *ngFor="let item of adminMenuItems" 
+         [routerLink]="item.route" 
+         routerLinkActive="active"
+         class="nav-item admin-item">
+        <i class="material-icons">{{ item.icon }}</i>
+        <span *ngIf="!isCollapsed">{{ item.label }}</span>
+      </a>
+    </div>
+  </nav>
+
+  <div class="sidebar-footer" *ngIf="!isCollapsed && authService.isAuthenticated()">
+    <div class="user-info">
+      <i class="material-icons">account_circle</i>
+      <span *ngIf="authService.user$ | async as user">{{ user.firstName }} {{ user.lastName }}</span>
+    </div>
+    <button mat-button class="logout-button" (click)="onLogout()">
+      <mat-icon>logout</mat-icon>
+      <span *ngIf="!isCollapsed">Logout</span>
+    </button>
+  </div>
+</div> 

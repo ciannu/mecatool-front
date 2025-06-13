@@ -1,0 +1,187 @@
+mat-card {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: var(--background-color-card);
+    color: var(--text-color-primary);
+}
+
+mat-card-title {
+    color: var(--text-color-accent);
+    margin-bottom: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button[mat-raised-button] {
+    background-color: var(--accent-color);
+    color: var(--text-color-button);
+}
+
+button[mat-button] {
+    color: var(--text-color-secondary);
+}
+
+.form-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: var(--card-background);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px var(--shadow-color);
+}
+
+.form-title {
+    color: var(--header-text);
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.inventory-item-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem;
+}
+
+.full-width {
+    width: 100%;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+}
+
+mat-form-field.mat-mdc-form-field {
+    background: var(--card-background);
+    border-radius: 6px;
+}
+
+.mat-mdc-form-field-infix {
+    background: var(--card-background);
+    color: var(--text-color);
+    border-radius: 6px;
+}
+
+.mat-mdc-form-field-flex {
+    background: transparent !important;
+}
+
+.mat-mdc-form-field-appearance-fill .mat-mdc-text-field-wrapper {
+    background: transparent !important;
+    border-radius: 6px;
+    border: 2px solid #fff;
+    box-sizing: border-box;
+}
+
+.dark-theme .mat-mdc-form-field-appearance-fill .mat-mdc-text-field-wrapper {
+    background-color: #2a2a2a !important;
+    border: 2px solid #444 !important;
+}
+
+.dark-theme mat-form-field.mat-mdc-form-field,
+.dark-theme .mat-mdc-form-field-infix {
+    background-color: #1e1e1e !important;
+    color: #e0e0e0 !important;
+}
+
+.dark-theme .mat-mdc-form-field-label {
+    color: #b0b8c1 !important;
+}
+
+.dark-theme input.mat-mdc-input-element,
+.dark-theme textarea.mat-mdc-input-element {
+    background-color: transparent !important;
+    color: #e0e0e0 !important;
+}
+
+.dark-theme .mat-mdc-form-field.mat-mdc-form-field-invalid .mat-mdc-form-field-flex {
+    border-color: #ff6f61 !important;
+}
+
+textarea {
+    min-height: 100px;
+    resize: vertical;
+}
+
+button[type="submit"] {
+    min-width: 120px;
+    font-weight: 500;
+    background: var(--header-text) !important;
+    color: #fff !important;
+    box-shadow: 0 2px 8px var(--shadow-color);
+    transition: background 0.2s, color 0.2s;
+}
+
+button[type="submit"]:disabled {
+    background: #888 !important;
+    color: #eee !important;
+    opacity: 0.7;
+}
+
+::ng-deep input.mat-mdc-input-element,
+::ng-deep textarea.mat-mdc-input-element {
+    background-color: transparent;
+    color: var(--text-color);
+    caret-color: var(--text-color);
+}
+
+::ng-deep .dark-theme input.mat-mdc-input-element,
+::ng-deep .dark-theme textarea.mat-mdc-input-element {
+    background-color: transparent !important;
+    color: #e0e0e0 !important;
+    caret-color: #e0e0e0 !important;
+}
+
+::ng-deep .dark-theme ::placeholder {
+    color: #aaaaaa !important;
+    opacity: 1;
+}
+
+::ng-deep .dark-theme .mat-mdc-floating-label,
+::ng-deep .dark-theme .mat-mdc-form-field-label {
+    color: #b0b8c1 !important;
+}
+
+::ng-deep .dark-theme .mat-mdc-form-field-subscript-wrapper,
+::ng-deep .dark-theme .mat-mdc-form-field-underline {
+    background-color: transparent;
+}
+
+button[type="button"] {
+    min-width: 100px;
+    border: 1px solid var(--header-text);
+    color: var(--header-text);
+}
+
+.dark-theme button[type="button"] {
+    border: 1px solid #e0e0e0;
+    color: #e0e0e0;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme button[type="button"]:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}

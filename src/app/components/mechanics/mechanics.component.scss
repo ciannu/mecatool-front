@@ -1,0 +1,87 @@
+.mechanics-header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1.5rem;
+
+    button {
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+}
+
+.search-container {
+    margin-bottom: 1.5rem;
+
+    .search-input-full-width {
+        width: 100%;
+    }
+}
+
+.mechanics-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1.5rem;
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-color);
+    border-radius: 8px;
+    overflow: hidden;
+
+    th,
+    td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+        color: var(--text-color-primary);
+    }
+
+    th {
+        background-color: var(--table-header-bg);
+        font-weight: 600;
+        color: var(--header-text);
+        text-transform: uppercase;
+        font-size: 0.85rem;
+    }
+
+    tr:hover {
+        background-color: var(--hover-background);
+    }
+
+    .mat-column-actions {
+        width: 120px;
+        text-align: center;
+
+        button {
+            margin: 0 0.25rem;
+        }
+    }
+}
+
+.mat-mdc-no-data-row {
+    text-align: center;
+    padding: 1rem;
+    color: var(--text-color-secondary);
+}
+
+.no-data {
+    text-align: center;
+    padding: 2rem;
+    color: var(--text-color-secondary);
+    font-size: 1.1rem;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    box-shadow: var(--shadow-color);
+    margin-top: 1.5rem;
+}
+
+.error {
+    color: var(--error-color);
+    background-color: var(--error-background);
+    border: 1px solid var(--error-color);
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}

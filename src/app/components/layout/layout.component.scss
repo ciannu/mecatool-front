@@ -1,0 +1,31 @@
+.layout-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-color);
+}
+
+.main-content {
+    flex: 1;
+    margin-left: 260px;
+    padding: 2rem;
+    transition: margin-left 0.3s cubic-bezier(.4, 0, .2, 1), background-color 0.3s ease;
+}
+
+.main-content.collapsed {
+    margin-left: 70px;
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+}
+
+.theme-toggle {
+    color: var(--text-color);
+    transition: transform 0.2s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}

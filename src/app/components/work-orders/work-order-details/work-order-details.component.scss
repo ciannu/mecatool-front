@@ -1,0 +1,174 @@
+.container {
+    padding: 20px;
+    color: var(--text-color);
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        h1 {
+            margin: 0;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+    }
+
+    .actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .details-section,
+    .mechanics-section,
+    .items-section,
+    .invoice-section {
+        margin-bottom: 30px;
+
+        h2 {
+            margin: 0 0 20px;
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        h3 {
+            margin: 0 0 16px;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+    }
+
+    .info-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .info-item {
+        display: flex;
+        flex-direction: column;
+
+        label {
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 4px;
+        }
+
+        span {
+            font-size: 16px;
+            color: var(--text-color);
+        }
+    }
+
+    .description {
+        margin-top: 20px;
+
+        label {
+            font-weight: 500;
+            color: var(--text-color);
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        p {
+            margin: 0;
+            white-space: pre-wrap;
+            color: var(--text-color);
+        }
+    }
+
+    .mechanics-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .mechanic-item {
+        background: var(--hover-bg);
+        padding: 8px 16px;
+        border-radius: 4px;
+        font-size: 14px;
+        color: var(--text-color);
+    }
+
+    table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .total-section {
+        text-align: right;
+        margin-top: 20px;
+
+        h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--text-color);
+        }
+    }
+
+    .payments-section {
+        margin-top: 20px;
+    }
+}
+
+:host-context(.dark-theme) {
+    .container {
+        background-color: var(--background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    .header h1,
+    .details-section h2,
+    .mechanics-section h2,
+    .items-section h2,
+    .invoice-section h2,
+    .total-section h3,
+    .payments-section h3 {
+        color: var(--text-color) !important;
+    }
+
+    .info-item label,
+    .info-item span,
+    .description label,
+    .description p {
+        color: var(--text-color) !important;
+    }
+
+    .mechanic-item {
+        background: var(--card-background) !important;
+        color: var(--text-color) !important;
+    }
+
+    table.mat-elevation-z8 {
+        background: var(--card-background) !important;
+        box-shadow: 0 2px 16px var(--shadow-color) !important;
+    }
+
+    table {
+        background-color: var(--card-background) !important;
+
+        .mat-mdc-header-cell {
+            background: var(--header-bg) !important;
+            color: var(--header-text) !important;
+        }
+
+        .mat-mdc-cell {
+            color: var(--text-color) !important;
+            background: var(--card-background) !important;
+            border-bottom: 1px solid var(--border-color) !important;
+        }
+
+        tr:nth-child(even) .mat-mdc-cell {
+            background: var(--background-color) !important;
+        }
+    }
+}

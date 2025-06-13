@@ -1,0 +1,153 @@
+.container {
+    padding: 20px;
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+
+        h1 {
+            margin: 0;
+            color: var(--text-color);
+        }
+    }
+
+    .table-container {
+        background: var(--card-background);
+        border-radius: 4px;
+        overflow: hidden;
+    }
+
+    .work-orders-table {
+        width: 100%;
+
+        .mat-column-actions {
+            width: 120px;
+            text-align: center;
+        }
+
+        .mat-column-status {
+            width: 120px;
+        }
+
+        .mat-column-startDate,
+        .mat-column-endDate {
+            width: 120px;
+        }
+
+        .mat-mdc-header-cell {
+            background: var(--header-bg);
+            color: var(--header-text);
+        }
+
+        .mat-mdc-cell {
+            color: var(--text-color);
+            background: var(--card-background);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        tr:nth-child(even) .mat-mdc-cell {
+            background: var(--background-color);
+        }
+    }
+
+    .status-badge {
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+
+        &.pending {
+            background-color: #fff3cd;
+            color: #856404;
+        }
+
+        &.in_progress {
+            background-color: #cce5ff;
+            color: #004085;
+        }
+
+        &.completed {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        &.canceled {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    }
+
+    .mechanics-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+
+        .mechanic-badge {
+            background-color: var(--hover-bg);
+            color: var(--text-color);
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 12px;
+        }
+    }
+}
+
+:host-context(.dark-theme) {
+    .container {
+        background-color: var(--background-color) !important;
+        color: var(--text-color) !important;
+    }
+
+    .header h1 {
+        color: var(--text-color) !important;
+    }
+
+    .table-container {
+        background-color: var(--card-background) !important;
+    }
+
+    .work-orders-table {
+        .mat-mdc-header-cell {
+            color: var(--header-text) !important;
+        }
+
+        .mat-mdc-cell {
+            color: var(--text-color) !important;
+            background: var(--card-background) !important;
+        }
+
+        tr:nth-child(even) .mat-mdc-cell {
+            background: var(--background-color) !important;
+        }
+    }
+
+    .status-badge {
+        &.pending {
+            background-color: #423c00 !important;
+            color: #ffd740 !important;
+        }
+
+        &.in_progress {
+            background-color: #002f6c !important;
+            color: #64b5f6 !important;
+        }
+
+        &.completed {
+            background-color: #1b5e20 !important;
+            color: #81c784 !important;
+        }
+
+        &.canceled {
+            background-color: #b71c1c !important;
+            color: #ef9a9a !important;
+        }
+    }
+
+    .mechanic-badge {
+        background-color: #616161 !important;
+        color: #e0e0e0 !important;
+    }
+}

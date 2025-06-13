@@ -1,0 +1,73 @@
+<div class="inventory-container">
+  <div class="header">
+    <h1>Inventory Items</h1>
+    <button mat-raised-button color="primary" (click)="createItem()">
+      <mat-icon>add</mat-icon>
+      Add New Item
+    </button>
+  </div>
+
+  <div class="filters">
+    <mat-form-field appearance="outline" class="category-filter">
+      <mat-label>Filter by Category</mat-label>
+      <mat-select [formControl]="categoryFilter" (selectionChange)="applyFilters()">
+        <mat-option value="">All Categories</mat-option>
+        <mat-option *ngFor="let category of categories" [value]="category">
+          {{category}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-checkbox [formControl]="lowStockFilter" (change)="applyFilters()">
+      Show Low Stock Items
+    </mat-checkbox>
+  </div>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let item">{{item.name}}</td>
+    </ng-container>
+
+    <!-- Category Column -->
+    <ng-container matColumnDef="category">
+      <th mat-header-cell *matHeaderCellDef>Category</th>
+      <td mat-cell *matCellDef="let item">{{item.category}}</td>
+    </ng-container>
+
+    <!-- Quantity Column -->
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Quantity</th>
+      <td mat-cell *matCellDef="let item" [class.low-stock]="item.quantity <= item.minStock">{{item.quantity}}</td>
+    </ng-container>
+
+    <!-- Min Stock Column -->
+    <ng-container matColumnDef="minStock">
+      <th mat-header-cell *matHeaderCellDef>Min Stock</th>
+      <td mat-cell *matCellDef="let item">{{item.minStock}}</td>
+    </ng-container>
+
+    <!-- Price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let item">{{item.price | currency}}</td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef>Actions</th>
+      <td mat-cell *matCellDef="let item">
+        <button mat-icon-button color="primary" (click)="editItem(item.id)" matTooltip="Edit">
+          <mat-icon>edit</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteItem(item.id)" matTooltip="Delete">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+</div> 

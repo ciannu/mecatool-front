@@ -1,0 +1,18 @@
+<div class="layout-container">
+  <app-sidebar (collapsedChange)="onSidebarCollapsed($event)"></app-sidebar>
+  <div class="main-content" [class.collapsed]="sidebarCollapsed">
+    <div class="header">
+      <button mat-icon-button (click)="themeService.toggleTheme()" class="theme-toggle">
+        <mat-icon>
+          <ng-container *ngIf="(themeService.isDarkTheme$ | async); else lightIcon">
+            light_mode
+          </ng-container>
+          <ng-template #lightIcon>
+            dark_mode
+          </ng-template>
+        </mat-icon>
+      </button>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>

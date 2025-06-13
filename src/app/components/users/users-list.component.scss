@@ -1,0 +1,66 @@
+.users-list-container {
+    padding: 20px;
+}
+
+mat-card {
+    margin: 20px auto;
+    max-width: 90%;
+}
+
+.actions-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.mat-form-field {
+    width: 300px;
+}
+
+/* Styles for the table itself, similar to clients-table */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: var(--card-background);
+    box-shadow: var(--shadow-color);
+    border-radius: 4px;
+    overflow: hidden;
+
+    th,
+    td {
+        padding: 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border-color);
+    }
+
+    th {
+        background-color: var(--header-bg);
+        font-weight: 500;
+        color: var(--header-text);
+    }
+
+    tr:hover {
+        background-color: var(--hover-background);
+    }
+
+    td:last-child {
+        white-space: nowrap;
+        display: flex;
+        gap: 0.5rem;
+    }
+}
+
+.mat-column-actions {
+    width: 120px;
+    /* Adjust as needed */
+    text-align: center;
+}
+
+.mat-paginator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 0;
+}

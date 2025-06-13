@@ -1,0 +1,58 @@
+<div class="form-container">
+  <h2 class="form-title">{{ isEditMode ? 'Edit Mechanic' : 'Add New Mechanic' }}</h2>
+
+  <form [formGroup]="mechanicForm" (ngSubmit)="onSubmit()" class="mechanic-form">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" required />
+      <mat-error *ngIf="mechanicForm.get('firstName')?.hasError('required')">
+        First name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" required />
+      <mat-error *ngIf="mechanicForm.get('lastName')?.hasError('required')">
+        Last name is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" type="email" required />
+      <mat-error *ngIf="mechanicForm.get('email')?.hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="mechanicForm.get('email')?.hasError('email')">
+        Please enter a valid email
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" required />
+      <mat-error *ngIf="mechanicForm.get('phone')?.hasError('required')">
+        Phone is required
+      </mat-error>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="mechanicForm.invalid"
+      >
+        {{ isEditMode ? 'Save Changes' : 'Add Mechanic' }}
+      </button>
+      <button
+        mat-button
+        type="button"
+        (click)="onCancel()"
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div> 

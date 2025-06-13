@@ -1,0 +1,40 @@
+<div class="form-container">
+  <h2 class="form-title">New Client</h2>
+  <form [formGroup]="clientForm" (ngSubmit)="onSubmit()" class="client-form">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstName" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastName" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Phone</mat-label>
+      <input matInput formControlName="phone" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Address</mat-label>
+      <textarea matInput formControlName="address" required></textarea>
+    </mat-form-field>
+
+    <div class="button-container">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="clientForm.invalid"
+      >
+        Register
+      </button>
+    </div>
+  </form>
+</div>
