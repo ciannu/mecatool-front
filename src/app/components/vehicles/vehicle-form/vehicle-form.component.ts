@@ -111,13 +111,11 @@ export class VehicleFormComponent implements OnInit {
         return { 'required': true };
       }
 
-      // If a Client object is selected from the autocomplete dropdown
       if (isClient(selectedClientValue)) {
         const found = this.clients.some(c => c.id === selectedClientValue.id);
         return found ? null : { 'incorrect': true };
       }
 
-      // If a string is typed manually, it must match a client's display name
       if (typeof selectedClientValue === 'string') {
         const found = this.clients.some(client =>
           this.displayClientName(client).toLowerCase() === selectedClientValue.toLowerCase()
@@ -125,12 +123,11 @@ export class VehicleFormComponent implements OnInit {
         return found ? null : { 'incorrect': true };
       }
 
-      return { 'incorrect': true }; // Fallback for any other unexpected type
+      return { 'incorrect': true };
     };
   }
 
   onSubmit(): void {
-    // Ensure the clientControl is updated and valid before proceeding
     this.clientControl.updateValueAndValidity();
     if (this.vehicleForm.invalid || this.clientControl.invalid) {
       return;
@@ -139,11 +136,9 @@ export class VehicleFormComponent implements OnInit {
     let clientId: number | null = null;
     const selectedClientValue = this.clientControl.value;
 
-    // Check if the value is a Client object
     if (isClient(selectedClientValue)) {
       clientId = selectedClientValue.id;
     } else if (typeof selectedClientValue === 'string') {
-      // If it's a string, find the corresponding client by display name
       const foundClient = this.clients.find(client =>
         this.displayClientName(client).toLowerCase() === selectedClientValue.toLowerCase()
       );

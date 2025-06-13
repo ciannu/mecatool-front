@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { User } from '../models/user.model';
 import { environment } from '../../environments/environment';
-import { UserRegister } from '../models/user-register.model'; // Assuming UserRegister is still used for creation
+import { UserRegister } from '../models/user-register.model';
+
 
 @Injectable({
   providedIn: 'root'

@@ -102,17 +102,15 @@ export class WorkOrderService {
   private _handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {
-      // Client-side errors
       errorMessage = `Error: ${error.error.message}`;
     } else {
-      // Server-side errors
       if (error.status === 400 && error.error && error.error.message) {
         errorMessage = `Error: ${error.error.message}`;
       } else if (error.status === 404 && error.error && error.error.message) {
         errorMessage = `Not Found: ${error.error.message}`;
-      } else if (error.status === 409 && error.error && error.error.message) { // Conflict
+      } else if (error.status === 409 && error.error && error.error.message) {
         errorMessage = `Conflict: ${error.error.message}`;
-      } else if (error.status === 422 && error.error && error.error.message) { // Unprocessable Entity
+      } else if (error.status === 422 && error.error && error.error.message) {
         errorMessage = `Validation Error: ${error.error.message}`;
       } else if (error.status === 500 && error.error && error.error.message) {
         errorMessage = `Server Error: ${error.error.message}`;

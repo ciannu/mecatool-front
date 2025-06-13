@@ -6,7 +6,7 @@ export interface BackendUserDTO {
   lastName: string;
   email: string;
   roleId: number;
-  role: Role; // This will now be the Role object from the backend
+  role: Role;
   createdAt?: string;
   updatedAt?: string;
 } 

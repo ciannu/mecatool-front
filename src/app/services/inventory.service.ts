@@ -40,44 +40,15 @@ export class InventoryService {
   }
 
   addWorkOrderItem(workOrderId: number, item: WorkOrderItem): Observable<WorkOrderItem> {
-    const itemToSend = {
-      inventoryItemId: item.inventoryItem.id,
-      quantity: item.quantity,
-      price: item.price
-    };
-    return this.http.post<WorkOrderItem>(`${this.workOrderItemsUrl}/${workOrderId}/items`, itemToSend)
-      .pipe(
-        take(1),
-        catchError(error => {
-          if (error.status === 400 && error.error?.includes('Not enough stock available')) {
-            return throwError(() => new Error('No hay suficiente stock disponible para este ítem.'));
-          }
-          return throwError(() => error);
-        })
-      );
+    return this.http.post<WorkOrderItem>(`${this.apiUrl}/work-orders/${workOrderId}/items`, item);
   }
 
   updateWorkOrderItem(workOrderId: number, itemId: number, item: WorkOrderItem): Observable<WorkOrderItem> {
-    const itemToSend = {
-      id: itemId,
-      workOrderId: workOrderId,
-      inventoryItemId: item.inventoryItem.id,
-      quantity: item.quantity,
-      price: item.price
-    };
-    return this.http.put<WorkOrderItem>(`${this.workOrderItemsUrl}/${workOrderId}/items/${itemId}`, itemToSend)
-      .pipe(
-        catchError(error => {
-          if (error.status === 400 && error.error?.includes('Not enough stock available')) {
-            return throwError(() => new Error('No hay suficiente stock disponible para este ítem.'));
-          }
-          return throwError(() => error);
-        })
-      );
+    return this.http.put<WorkOrderItem>(`${this.apiUrl}/work-orders/${workOrderId}/items/${itemId}`, item);
   }
 
   deleteWorkOrderItem(workOrderId: number, itemId: number): Observable<void> {
-    return this.http.delete<void>(`${this.workOrderItemsUrl}/${workOrderId}/items/${itemId}`);
+    return this.http.delete<void>(`${this.apiUrl}/work-orders/${workOrderId}/items/${itemId}`);
   }
 
   // Stock management
@@ -87,5 +58,9 @@ export class InventoryService {
 
   hasEnoughStock(itemId: number, quantity: number): Observable<boolean> {
     return this.http.get<boolean>(`${this.apiUrl}/${itemId}/has-stock?quantity=${quantity}`);
+  }
+
+  decreaseStock(id: number, quantity: number): Observable<InventoryItem> {
+    return this.http.patch<InventoryItem>(`${this.apiUrl}/${id}/decrease-stock`, null, { params: { quantity: quantity.toString() } });
   }
 } 

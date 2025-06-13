@@ -105,7 +105,6 @@ export class WorkOrderItemDialogComponent implements OnInit {
       price: [data.item?.price || 0, [Validators.required, Validators.min(0)]]
     });
 
-    // Add max validator for quantity
     this.itemForm.get('quantity')?.setValidators([
       Validators.required,
       Validators.min(1),
@@ -143,7 +142,6 @@ export class WorkOrderItemDialogComponent implements OnInit {
       this.itemForm.patchValue({
         price: selectedItem.price
       });
-      // Update quantity validator
       this.itemForm.get('quantity')?.setValidators([
         Validators.required,
         Validators.min(1),
