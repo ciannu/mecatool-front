@@ -40,15 +40,15 @@ export class InventoryService {
   }
 
   addWorkOrderItem(workOrderId: number, item: WorkOrderItem): Observable<WorkOrderItem> {
-    return this.http.post<WorkOrderItem>(`${this.apiUrl}/work-orders/${workOrderId}/items`, item);
+    return this.http.post<WorkOrderItem>(`${this.workOrderItemsUrl}/${workOrderId}/items`, item);
   }
 
   updateWorkOrderItem(workOrderId: number, itemId: number, item: WorkOrderItem): Observable<WorkOrderItem> {
-    return this.http.put<WorkOrderItem>(`${this.apiUrl}/work-orders/${workOrderId}/items/${itemId}`, item);
+    return this.http.put<WorkOrderItem>(`${this.workOrderItemsUrl}/${workOrderId}/items/${itemId}`, item);
   }
 
   deleteWorkOrderItem(workOrderId: number, itemId: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/work-orders/${workOrderId}/items/${itemId}`);
+    return this.http.delete<void>(`${this.workOrderItemsUrl}/${workOrderId}/items/${itemId}`);
   }
 
   // Stock management
