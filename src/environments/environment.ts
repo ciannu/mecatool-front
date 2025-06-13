@@ -1,3 +1,4 @@
 export const environment = {
-  apiUrl: 'http://localhost:9090'
+  production: false,
+  apiUrl: 'https://mecatool-back.onrender.com'
 }; 
