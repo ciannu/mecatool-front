@@ -100,7 +100,7 @@ export class WorkOrderItemDialogComponent implements OnInit {
     this.isEditMode = !!data.item;
     this.itemForm = this.fb.group({
       id: [data.item?.id || null],
-      inventoryItemId: [data.item?.inventoryItem?.id || '', Validators.required],
+      inventoryItemId: [data.item?.inventoryItemId || '', Validators.required],
       quantity: [data.item?.quantity || 1, [Validators.required, Validators.min(1)]],
       price: [data.item?.price || 0, [Validators.required, Validators.min(0)]]
     });
@@ -129,8 +129,8 @@ export class WorkOrderItemDialogComponent implements OnInit {
           inventoryItemId: firstItem.id,
           price: firstItem.price
         });
-      } else if (this.isEditMode && this.data.item?.inventoryItem) {
-        this.selectedItem = this.data.item.inventoryItem;
+      } else if (this.isEditMode && this.data.item?.inventoryItemId) {
+        this.selectedItem = this.inventoryItems.find(item => item.id === this.data.item?.inventoryItemId);
       }
     });
   }
@@ -167,7 +167,7 @@ export class WorkOrderItemDialogComponent implements OnInit {
       }
 
       const item: WorkOrderItem = {
-        inventoryItem: selectedInventoryItem,
+        inventoryItemId: selectedInventoryItem.id as number,
         quantity: formValue.quantity,
         price: formValue.price,
         workOrderId: this.data.workOrderId

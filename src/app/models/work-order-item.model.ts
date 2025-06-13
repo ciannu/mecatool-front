@@ -10,7 +10,7 @@ export interface InventoryItem {
 
 export interface WorkOrderItem {
   id?: number;
-  inventoryItem: InventoryItem;
+  inventoryItemId: number;
   quantity: number;
   price: number;
   workOrderId?: number;
