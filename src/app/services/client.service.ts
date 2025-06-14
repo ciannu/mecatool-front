@@ -47,4 +47,12 @@ export class ClientService {
   searchClients(query: string): Observable<Client[]> {
     return this.http.get<Client[]>(`${this.apiUrl}/search?query=${query}`);
   }
+
+  getTotalClients(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/total`);
+  }
+
+  getLatestClient(): Observable<Client> {
+    return this.http.get<Client>(`${this.apiUrl}/latest`);
+  }
 } 

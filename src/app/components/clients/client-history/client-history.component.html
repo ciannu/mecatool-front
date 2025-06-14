@@ -14,13 +14,12 @@
       <div class="table-container">
         <table mat-table [dataSource]="workOrders" class="mat-elevation-z8">
 
-          <!-- ID Column -->
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> ID </th>
             <td mat-cell *matCellDef="let workOrder"> {{ workOrder.id }} </td>
           </ng-container>
 
-          <!-- Description Column -->
+
           <ng-container matColumnDef="description">
             <th mat-header-cell *matHeaderCellDef> Description </th>
             <td mat-cell *matCellDef="let workOrder"> {{ workOrder.description }} </td>

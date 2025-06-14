@@ -10,19 +10,29 @@
         <h3>Quick Stats</h3>
         <div class="stat">
           <span class="stat-label">Total Clients</span>
-          <span class="stat-value">24</span>
+          <span class="stat-value">{{ totalClients }}</span>
         </div>
         <div class="stat">
-          <span class="stat-label">Active Projects</span>
-          <span class="stat-value">12</span>
+          <span class="stat-label">Total Vehicles</span>
+          <span class="stat-value">{{ totalVehicles }}</span>
+        </div>
+        <div class="stat">
+          <span class="stat-label">Total Work Orders</span>
+          <span class="stat-value">{{ totalWorkOrders }}</span>
         </div>
       </div>
       <div class="card">
         <h3>Recent Activity</h3>
         <ul class="activity-list">
-          <li>New client added</li>
-          <li>Project status updated</li>
-          <li>Meeting scheduled</li>
+          <li *ngIf="latestClient">
+            New client: {{ latestClient.firstName }} {{ latestClient.lastName }} on {{ latestClient.createdAt | date }}
+          </li>
+          <li *ngIf="latestWorkOrder">
+            New work order: {{ latestWorkOrder.description }} ({{ latestWorkOrder.status }}) on {{ latestWorkOrder.startDate | date }}
+          </li>
+          <li *ngIf="!latestClient && !latestWorkOrder">
+            No recent activity to display.
+          </li>
         </ul>
       </div>
     </div>

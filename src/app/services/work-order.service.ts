@@ -94,6 +94,18 @@ export class WorkOrderService {
     );
   }
 
+  getTotalWorkOrders(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/total`).pipe(
+      catchError(this._handleError)
+    );
+  }
+
+  getLatestWorkOrder(): Observable<WorkOrderDTO> {
+    return this.http.get<WorkOrderDTO>(`${this.apiUrl}/latest`).pipe(
+      catchError(this._handleError)
+    );
+  }
+
   private _handleError(error: HttpErrorResponse) {
     let errorMessage = 'An unknown error occurred!';
     if (error.error instanceof ErrorEvent) {

@@ -49,4 +49,12 @@ export class VehicleService {
   getVehiclesByClient(clientId: number): Observable<Vehicle[]> {
     return this.http.get<Vehicle[]>(`${this.apiUrl}/by-client/${clientId}`);
   }
+
+  getTotalVehicles(): Observable<number> {
+    return this.http.get<number>(`${this.apiUrl}/total`);
+  }
+
+  getLatestVehicle(): Observable<Vehicle> {
+    return this.http.get<Vehicle>(`${this.apiUrl}/latest`);
+  }
 } 
