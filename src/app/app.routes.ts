@@ -23,6 +23,7 @@ import { UserFormComponent } from './components/users/user-form.component';
 import { UsersListComponent } from './components/users/users-list.component';
 import { UserEditComponent } from './components/users/user-edit.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { NotificationsComponent } from './components/notifications/notifications.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -48,6 +49,7 @@ export const routes: Routes = [
       { path: 'users/new', component: UserFormComponent },
       { path: 'users/edit/:id', component: UserEditComponent },
       { path: 'settings', component: SettingsComponent },
+      { path: 'notifications', component: NotificationsComponent },
       {
         path: 'work-orders',
         children: [

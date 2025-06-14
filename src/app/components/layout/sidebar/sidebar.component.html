@@ -18,6 +18,10 @@
       <i class="material-icons">{{ item.icon }}</i>
       <span *ngIf="!isCollapsed">{{ item.label }}</span>
     </a>
+    <a [routerLink]="'/notifications'" routerLinkActive="active" class="nav-item">
+      <i class="material-icons">notifications</i>
+      <span *ngIf="!isCollapsed">Notifications</span>
+    </a>
 
     <!-- Admin Menu Items -->
     <div class="admin-section" *ngIf="isAdmin">
