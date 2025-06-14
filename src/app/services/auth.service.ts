@@ -8,12 +8,15 @@ import { UserRegister } from '../models/user-register.model';
 import { AuthResponse } from '../models/auth-response.model';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
+import { UserProfileUpdate } from '../models/user-profile-update.model';
+import { UserPasswordUpdate } from '../models/user-password-update.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   private apiUrl = `${environment.apiUrl}/auth`;
+  private usersApiUrl = `${environment.apiUrl}/users`;
   private userSubject = new BehaviorSubject<User | null>(null);
   public user$ = this.userSubject.asObservable();
 
@@ -81,6 +84,35 @@ export class AuthService {
         this.userSubject.next(frontendUser);
         this.router.navigate(['/home']);
       }),
+      catchError(this.handleError)
+    );
+  }
+
+  updateProfile(userId: number, profileData: UserProfileUpdate): Observable<User> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.getToken()}`
+    });
+    return this.http.put<User>(`${this.usersApiUrl}/${userId}/profile`, profileData, { headers }).pipe(
+      tap(updatedUser => {
+        // Update local storage and user subject with new profile data
+        const currentUser = this.userSubject.value;
+        if (currentUser) {
+          const updatedLocalUser = { ...currentUser, ...updatedUser };
+          localStorage.setItem('user', JSON.stringify(updatedLocalUser));
+          this.userSubject.next(updatedLocalUser);
+        }
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  changePassword(userId: number, passwordData: UserPasswordUpdate): Observable<void> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${this.getToken()}`
+    });
+    return this.http.put<void>(`${this.usersApiUrl}/${userId}/password`, passwordData, { headers }).pipe(
       catchError(this.handleError)
     );
   }

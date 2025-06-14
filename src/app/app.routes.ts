@@ -21,7 +21,7 @@ import { AuthGuard } from './guards/auth.guard';
 import { UserFormComponent } from './components/users/user-form.component';
 import { UsersListComponent } from './components/users/users-list.component';
 import { UserEditComponent } from './components/users/user-edit.component';
-
+import { SettingsComponent } from './components/settings/settings.component';
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -45,6 +45,7 @@ export const routes: Routes = [
       { path: 'users', component: UsersListComponent },
       { path: 'users/new', component: UserFormComponent },
       { path: 'users/edit/:id', component: UserEditComponent },
+      { path: 'settings', component: SettingsComponent },
       {
         path: 'work-orders',
         children: [
