@@ -11,11 +11,13 @@
               <div *ngFor="let notification of allNotifications">
                 <mat-list-item class="notification-item" [class.unread]="!notification.isRead">
                   <mat-icon matListItemIcon>{{ notification.type === 'LOW_STOCK' ? 'inventory_2' : 'build' }}</mat-icon>
-                  <div matListItemTitle>{{ notification.message }}</div>
+                  <div matListItemTitle>{{ notification.message }} ({{ notification.isRead }})</div>
                   <div matListItemLine class="notification-timestamp">{{ notification.timestamp | date:'short' }}</div>
-                  <button mat-icon-button (click)="markAsRead(notification)" *ngIf="!notification.isRead" matTooltip="Mark as Read">
-                    <mat-icon>done</mat-icon>
-                  </button>
+                  <ng-container *ngIf="!notification.isRead">
+                    <button mat-icon-button (click)="markAsRead(notification)" matTooltip="Mark as Read">
+                      <mat-icon>done</mat-icon>
+                    </button>
+                  </ng-container>
                   <button mat-icon-button color="warn" (click)="deleteNotification(notification.id)" matTooltip="Delete">
                     <mat-icon>delete</mat-icon>
                   </button>
@@ -34,11 +36,13 @@
               <div *ngFor="let notification of unreadNotifications">
                 <mat-list-item class="notification-item" [class.unread]="!notification.isRead">
                   <mat-icon matListItemIcon>{{ notification.type === 'LOW_STOCK' ? 'inventory_2' : 'build' }}</mat-icon>
-                  <div matListItemTitle>{{ notification.message }}</div>
+                  <div matListItemTitle>{{ notification.message }} ({{ notification.isRead }})</div>
                   <div matListItemLine class="notification-timestamp">{{ notification.timestamp | date:'short' }}</div>
-                  <button mat-icon-button (click)="markAsRead(notification)" *ngIf="!notification.isRead" matTooltip="Mark as Read">
-                    <mat-icon>done</mat-icon>
-                  </button>
+                  <ng-container *ngIf="!notification.isRead">
+                    <button mat-icon-button (click)="markAsRead(notification)" matTooltip="Mark as Read">
+                      <mat-icon>done</mat-icon>
+                    </button>
+                  </ng-container>
                   <button mat-icon-button color="warn" (click)="deleteNotification(notification.id)" matTooltip="Delete">
                     <mat-icon>delete</mat-icon>
                   </button>
