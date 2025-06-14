@@ -10,10 +10,11 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatIconModule } from '@angular/material/icon';
-import { WorkOrderService, WorkOrder, WorkOrderStatus } from '../../../services/work-order.service';
+import { WorkOrderService, WorkOrderStatus } from '../../../services/work-order.service';
 import { VehicleService, Vehicle } from '../../../services/vehicle.service';
 import { MechanicService, Mechanic } from '../../../services/mechanic.service';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+import { WorkOrderDTO } from '../../../models/work-order.model';
 
 @Component({
   selector: 'app-work-order-form',
@@ -94,7 +95,7 @@ export class WorkOrderFormComponent implements OnInit {
 
   onSubmit(): void {
     if (this.workOrderForm.valid) {
-      const workOrder: WorkOrder = this.workOrderForm.value;
+      const workOrder: WorkOrderDTO = this.workOrderForm.value;
 
       if (this.workOrderId) {
         this.workOrderService.update(this.workOrderId, workOrder).subscribe(() => {

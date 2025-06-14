@@ -5,7 +5,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { RouterModule } from '@angular/router';
 import { DatePipe, CommonModule } from '@angular/common';
-import { WorkOrderService, WorkOrder, WorkOrderStatus } from '../../../services/work-order.service';
+import { WorkOrderService, WorkOrderStatus } from '../../../services/work-order.service';
 import { VehicleService, Vehicle } from '../../../services/vehicle.service';
 import { MechanicService, Mechanic } from '../../../services/mechanic.service';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
@@ -83,7 +83,7 @@ export class WorkOrdersListComponent implements OnInit {
     return mechanic ? `${mechanic.firstName} ${mechanic.lastName}` : 'Unknown';
   }
 
-  deleteWorkOrder(workOrder: WorkOrder): void {
+  deleteWorkOrder(workOrder: WorkOrderDTO): void {
     const dialogRef = this.dialog.open(ConfirmDialogComponent, {
       data: {
         title: 'Delete Work Order',

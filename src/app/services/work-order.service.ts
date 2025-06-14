@@ -4,24 +4,13 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { WorkOrderItem } from '../models/work-order-item.model';
+import { WorkOrderDTO } from '../models/work-order.model';
 
 export enum WorkOrderStatus {
   PENDING = 'PENDING',
   IN_PROGRESS = 'IN_PROGRESS',
   COMPLETED = 'COMPLETED',
   CANCELED = 'CANCELED',
-}
-
-export interface WorkOrder {
-  id?: number;
-  vehicleId: number;
-  description: string;
-  status: WorkOrderStatus;
-  startDate: Date;
-  endDate?: Date;
-  total?: number;
-  mechanicIds: number[];
-  workOrderItems?: WorkOrderItem[];
 }
 
 @Injectable({
@@ -32,34 +21,34 @@ export class WorkOrderService {
 
   constructor(private http: HttpClient) {}
 
-  getAll(): Observable<WorkOrder[]> {
-    return this.http.get<WorkOrder[]>(this.apiUrl);
+  getAll(): Observable<WorkOrderDTO[]> {
+    return this.http.get<WorkOrderDTO[]>(this.apiUrl);
   }
 
-  getById(id: number): Observable<WorkOrder> {
-    return this.http.get<WorkOrder>(`${this.apiUrl}/${id}`);
+  getById(id: number): Observable<WorkOrderDTO> {
+    return this.http.get<WorkOrderDTO>(`${this.apiUrl}/${id}`);
   }
 
-  create(workOrder: WorkOrder): Observable<WorkOrder> {
-    return this.http.post<WorkOrder>(this.apiUrl, workOrder);
+  create(workOrder: WorkOrderDTO): Observable<WorkOrderDTO> {
+    return this.http.post<WorkOrderDTO>(this.apiUrl, workOrder);
   }
 
-  update(id: number, workOrder: WorkOrder): Observable<WorkOrder> {
-    return this.http.put<WorkOrder>(`${this.apiUrl}/${id}`, workOrder);
+  update(id: number, workOrder: WorkOrderDTO): Observable<WorkOrderDTO> {
+    return this.http.put<WorkOrderDTO>(`${this.apiUrl}/${id}`, workOrder);
   }
 
   delete(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
   }
 
-  updateStatus(id: number, status: WorkOrderStatus): Observable<WorkOrder> {
-    return this.http.patch<WorkOrder>(`${this.apiUrl}/${id}/status`, {
+  updateStatus(id: number, status: WorkOrderStatus): Observable<WorkOrderDTO> {
+    return this.http.patch<WorkOrderDTO>(`${this.apiUrl}/${id}/status`, {
       status,
     });
   }
 
-  assignMechanics(id: number, mechanicIds: number[]): Observable<WorkOrder> {
-    return this.http.patch<WorkOrder>(
+  assignMechanics(id: number, mechanicIds: number[]): Observable<WorkOrderDTO> {
+    return this.http.patch<WorkOrderDTO>(
       `${this.apiUrl}/${id}/mechanics`,
       mechanicIds
     );
@@ -69,12 +58,18 @@ export class WorkOrderService {
     status?: WorkOrderStatus,
     vehicleId?: number,
     mechanicId?: number
-  ): Observable<WorkOrder[]> {
+  ): Observable<WorkOrderDTO[]> {
     let url = `${this.apiUrl}/filter?`;
     if (status) url += `status=${status}&`;
     if (vehicleId) url += `vehicleId=${vehicleId}&`;
     if (mechanicId) url += `mechanicId=${mechanicId}`;
-    return this.http.get<WorkOrder[]>(url);
+    return this.http.get<WorkOrderDTO[]>(url);
+  }
+
+  getWorkOrdersByClientId(clientId: number): Observable<WorkOrderDTO[]> {
+    return this.http.get<WorkOrderDTO[]>(`${this.apiUrl}/client/${clientId}`).pipe(
+      catchError(this._handleError)
+    );
   }
 
   getWorkOrderItems(workOrderId: number): Observable<WorkOrderItem[]> {

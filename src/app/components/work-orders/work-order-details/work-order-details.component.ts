@@ -6,7 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule, MatDialog } from '@angular/material/dialog';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { WorkOrderService, WorkOrder, WorkOrderStatus } from '../../../services/work-order.service';
+import { WorkOrderService, WorkOrderStatus } from '../../../services/work-order.service';
+import { WorkOrderDTO } from '../../../models/work-order.model';
 import { VehicleService, Vehicle } from '../../../services/vehicle.service';
 import { MechanicService, Mechanic } from '../../../services/mechanic.service';
 import { InventoryService } from '../../../services/inventory.service';
@@ -32,7 +33,7 @@ import { AuthService } from '../../../services/auth.service';
   styleUrls: ['./work-order-details.component.scss']
 })
 export class WorkOrderDetailsComponent implements OnInit {
-  workOrder?: WorkOrder;
+  workOrder?: WorkOrderDTO;
   vehicle?: Vehicle;
   mechanics: Mechanic[] = [];
   inventoryItems: InventoryItem[] = [];
@@ -174,7 +175,7 @@ export class WorkOrderDetailsComponent implements OnInit {
           this.loadWorkOrderItems();
           this.snackBar.open('Item eliminado correctamente', 'Cerrar', { duration: 3000 });
         },
-        error: (error) => {
+        error: (error: any) => {
           this.snackBar.open('Error al eliminar el item', 'Cerrar', { duration: 5000 });
         }
       });
@@ -198,38 +199,33 @@ export class WorkOrderDetailsComponent implements OnInit {
     });
   }
 
-  generateInvoice() {
-    const workOrderId = this.workOrder?.id;
-    if (!workOrderId) return;
-
-    this.invoiceService.createFromWorkOrder(workOrderId).subscribe(invoice => {
-      this.invoice = invoice;
-      this.payments = invoice.payments || [];
-    });
+  updateWorkOrderStatus(newStatus: WorkOrderStatus): void {
+    if (this.workOrder?.id) {
+      this.workOrderService.updateStatus(this.workOrder.id, newStatus).subscribe({
+        next: (updatedWorkOrder) => {
+          this.workOrder = updatedWorkOrder;
+          this.snackBar.open('Work order status updated successfully', 'Close', { duration: 3000 });
+        },
+        error: (error: any) => {
+          this.snackBar.open(`Error updating status: ${error.message || error.error?.message}`, 'Close', { duration: 5000 });
+          console.error('Error updating work order status:', error);
+        }
+      });
+    }
   }
 
   generatePdf() {
     if (this.invoice?.id) {
       this.invoiceService.generatePdf(this.invoice.id).subscribe({
-        next: (response) => {
-          const blob = new Blob([response], { type: 'application/pdf' });
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = `invoice-${this.invoice?.id}.pdf`;
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(url);
-          document.body.removeChild(a);
-          this.snackBar.open('Factura PDF generada correctamente', 'Cerrar', { duration: 3000 });
+        next: (response: Blob) => {
+          const fileURL = URL.createObjectURL(response);
+          window.open(fileURL);
         },
-        error: (error) => {
-          console.error('Error al generar el PDF de la factura', error);
-          this.snackBar.open('Error al generar el PDF de la factura', 'Cerrar', { duration: 5000 });
+        error: (error: any) => {
+          this.snackBar.open('Error generating PDF', 'Close', { duration: 3000 });
+          console.error('Error generating PDF:', error);
         }
       });
-    } else {
-      this.snackBar.open('No hay factura para generar PDF', 'Cerrar', { duration: 3000 });
     }
   }
 } 

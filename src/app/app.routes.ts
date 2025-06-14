@@ -5,6 +5,7 @@ import { ClientsComponent } from './components/clients/clients.component';
 import { ClientFormComponent } from './components/clients/client-form/client-form.component';
 import { ClientEditComponent } from './components/clients/client-edit/client-edit.component';
 import { ClientDetailComponent } from './components/clients/client-detail/client-detail.component';
+import { ClientHistoryComponent } from './components/clients/client-history/client-history.component';
 import { VehiclesComponent } from './components/vehicles/vehicles.component';
 import { VehicleFormComponent } from './components/vehicles/vehicle-form/vehicle-form.component';
 import { VehicleEditComponent } from './components/vehicles/vehicle-edit/vehicle-edit.component';
@@ -36,6 +37,7 @@ export const routes: Routes = [
       { path: 'clients/new', component: ClientFormComponent },
       { path: 'clients/:id', component: ClientDetailComponent },
       { path: 'clients/edit/:id', component: ClientEditComponent },
+      { path: 'clients/:id/history', component: ClientHistoryComponent },
       { path: 'vehicles', component: VehiclesComponent },
       { path: 'vehicles/new', component: VehicleFormComponent },
       { path: 'vehicles/edit/:id', component: VehicleEditComponent },

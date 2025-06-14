@@ -1,0 +1,74 @@
+<div class="history-container">
+  <div class="header">
+    <h2>Work Order History for Client ID: {{ clientId }}</h2>
+    <div class="actions">
+      <button mat-button (click)="onBack()">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Client Details
+      </button>
+    </div>
+  </div>
+
+  <mat-card class="history-card">
+    <mat-card-content>
+      <div class="table-container">
+        <table mat-table [dataSource]="workOrders" class="mat-elevation-z8">
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> ID </th>
+            <td mat-cell *matCellDef="let workOrder"> {{ workOrder.id }} </td>
+          </ng-container>
+
+          <!-- Description Column -->
+          <ng-container matColumnDef="description">
+            <th mat-header-cell *matHeaderCellDef> Description </th>
+            <td mat-cell *matCellDef="let workOrder"> {{ workOrder.description }} </td>
+          </ng-container>
+
+          <!-- Status Column -->
+          <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef> Status </th>
+            <td mat-cell *matCellDef="let workOrder"> {{ workOrder.status }} </td>
+          </ng-container>
+
+          <!-- Total Price Column -->
+          <ng-container matColumnDef="totalPrice">
+            <th mat-header-cell *matHeaderCellDef> Total Price </th>
+            <td mat-cell *matCellDef="let workOrder"> {{ workOrder.totalPrice | currency:'USD':'symbol':'1.2-2' }} </td>
+          </ng-container>
+
+          <!-- Date Column -->
+          <ng-container matColumnDef="date">
+            <th mat-header-cell *matHeaderCellDef> Date </th>
+            <td mat-cell *matCellDef="let workOrder"> {{ workOrder.creationDate | date:'shortDate' }} </td>
+          </ng-container>
+
+          <!-- Vehicle License Plate Column -->
+          <ng-container matColumnDef="vehicleLicensePlate">
+            <th mat-header-cell *matHeaderCellDef> Vehicle </th>
+            <td mat-cell *matCellDef="let workOrder"> {{ workOrder.vehicle?.licensePlate }} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+          <!-- Row shown when there is no matching data. -->
+          <tr class="mat-row" *matNoDataRow>
+            <td class="mat-cell" [attr.colspan]="displayedColumns.length">No work orders found for this client.</td>
+          </tr>
+        </table>
+      </div>
+
+      <div *ngIf="workOrders.length === 0 && clientId !== null" class="no-data-message">
+        <mat-icon>info</mat-icon>
+        <span>No work orders found for this client.</span>
+      </div>
+
+      <div *ngIf="clientId === null" class="no-data-message">
+        <mat-icon>warning</mat-icon>
+        <span>Client ID not provided.</span>
+      </div>
+    </mat-card-content>
+  </mat-card>
+</div> 

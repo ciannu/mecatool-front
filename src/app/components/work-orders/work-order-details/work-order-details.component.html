@@ -2,7 +2,7 @@
   <div class="header">
     <h1>Work Order Details</h1>
     <div class="actions">
-      <button mat-raised-button color="primary" (click)="generateInvoice()" 
+      <button mat-raised-button color="primary" (click)="generatePdf()" 
               [disabled]="workOrder?.status !== 'COMPLETED'">
         Generate Invoice
       </button>

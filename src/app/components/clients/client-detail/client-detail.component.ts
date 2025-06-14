@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatTableModule } from '@angular/material/table';
@@ -18,7 +18,8 @@ import { Vehicle } from '../../../models/vehicle.model';
     MatButtonModule,
     MatCardModule,
     MatTableModule,
-    MatIconModule
+    MatIconModule,
+    RouterModule
   ],
   templateUrl: './client-detail.component.html',
   styleUrl: './client-detail.component.scss'
