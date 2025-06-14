@@ -50,19 +50,23 @@ export class NotificationsComponent implements OnInit {
   loadUnreadNotifications(): void {
     this.notificationService.getUnreadNotifications().subscribe(notifications => {
       this.unreadNotifications = notifications;
+      console.log('Unread Notifications loaded. Checking isRead status:');
+      notifications.forEach(notif => console.log(`Notification ID: ${notif.id}, isRead: ${notif.isRead}`));
     });
   }
 
   markAsRead(notification: Notification): void {
     if (!notification.isRead && notification.id) {
+      notification.isRead = true;
+
       this.notificationService.markAsRead(notification.id).subscribe(() => {
-        notification.isRead = true;
         this.snackBar.open('Notification marked as read', 'Close', { duration: 2000 });
-        this.loadAllNotifications(); // Refresh both lists
+        this.loadAllNotifications();
         this.loadUnreadNotifications();
       }, error => {
         console.error('Error marking as read:', error);
         this.snackBar.open('Failed to mark as read', 'Close', { duration: 3000 });
+        notification.isRead = false;
       });
     }
   }
