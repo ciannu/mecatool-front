@@ -4,58 +4,28 @@
       <mat-card-title>Notifications</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <mat-tab-group (selectedTabChange)="onTabChange($event)" [(selectedIndex)]="selectedTabIndex">
-        <mat-tab label="All Notifications">
-          <mat-list>
-            <ng-container *ngIf="allNotifications.length > 0; else noNotifications">
-              <div *ngFor="let notification of allNotifications">
-                <mat-list-item class="notification-item" [class.unread]="!notification.isRead">
-                  <mat-icon matListItemIcon>{{ notification.type === 'LOW_STOCK' ? 'inventory_2' : 'build' }}</mat-icon>
-                  <div matListItemTitle>{{ notification.message }} ({{ notification.isRead }})</div>
-                  <div matListItemLine class="notification-timestamp">{{ notification.timestamp | date:'short' }}</div>
-                  <ng-container *ngIf="!notification.isRead">
-                    <button mat-icon-button (click)="markAsRead(notification)" matTooltip="Mark as Read">
-                      <mat-icon>done</mat-icon>
-                    </button>
-                  </ng-container>
-                  <button mat-icon-button color="warn" (click)="deleteNotification(notification.id)" matTooltip="Delete">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </mat-list-item>
-                <mat-divider></mat-divider>
+      <mat-list>
+        <ng-container *ngIf="allNotifications.length > 0; else noNotifications">
+          <div *ngFor="let notification of allNotifications">
+            <mat-list-item class="notification-item" [class.unread]="!notification.isRead">
+              <mat-icon matListItemIcon>{{ notification.type === 'LOW_STOCK' ? 'inventory_2' : 'build' }}</mat-icon>
+              <div class="notification-content-area">
+                <div matListItemTitle>{{ notification.message }}</div>
+                <div matListItemLine class="notification-timestamp">{{ notification.timestamp | date:'short' }}</div>
               </div>
-            </ng-container>
-            <ng-template #noNotifications>
-              <p class="no-notifications">No notifications to display.</p>
-            </ng-template>
-          </mat-list>
-        </mat-tab>
-        <mat-tab label="Unread Notifications ({{ unreadNotifications.length }})">
-          <mat-list>
-            <ng-container *ngIf="unreadNotifications.length > 0; else noUnreadNotifications">
-              <div *ngFor="let notification of unreadNotifications">
-                <mat-list-item class="notification-item" [class.unread]="!notification.isRead">
-                  <mat-icon matListItemIcon>{{ notification.type === 'LOW_STOCK' ? 'inventory_2' : 'build' }}</mat-icon>
-                  <div matListItemTitle>{{ notification.message }} ({{ notification.isRead }})</div>
-                  <div matListItemLine class="notification-timestamp">{{ notification.timestamp | date:'short' }}</div>
-                  <ng-container *ngIf="!notification.isRead">
-                    <button mat-icon-button (click)="markAsRead(notification)" matTooltip="Mark as Read">
-                      <mat-icon>done</mat-icon>
-                    </button>
-                  </ng-container>
-                  <button mat-icon-button color="warn" (click)="deleteNotification(notification.id)" matTooltip="Delete">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </mat-list-item>
-                <mat-divider></mat-divider>
+              <div class="notification-actions">
+                <button mat-icon-button color="warn" (click)="deleteNotification(notification.id)" matTooltip="Delete">
+                  <mat-icon>delete</mat-icon>
+                </button>
               </div>
-            </ng-container>
-            <ng-template #noUnreadNotifications>
-              <p class="no-notifications">No unread notifications.</p>
-            </ng-template>
-          </mat-list>
-        </mat-tab>
-      </mat-tab-group>
+            </mat-list-item>
+            <mat-divider></mat-divider>
+          </div>
+        </ng-container>
+        <ng-template #noNotifications>
+          <p class="no-notifications">No notifications to display.</p>
+        </ng-template>
+      </mat-list>
     </mat-card-content>
   </mat-card>
 </div> 
