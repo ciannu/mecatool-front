@@ -3,37 +3,109 @@
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: var(--background-color);
+    background: linear-gradient(135deg, var(--background-color) 0%, var(--card-background) 100%);
+    padding: 20px;
+}
+
+.login-content {
+    width: 100%;
+    max-width: 420px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 1rem;
+
+    .logo {
+        max-width: 200px;
+        height: auto;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1));
+        transition: transform 0.3s ease;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+    }
 }
 
 .login-card {
     width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    box-shadow: var(--shadow-color);
-    background-color: var(--card-background);
-    border-radius: 8px;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+    &:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+    }
 }
 
 .login-card .mat-card-header {
     justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 2rem;
+    text-align: center;
 }
 
 .login-card .mat-card-title {
-    font-size: 24px;
-    font-weight: bold;
+    font-size: 28px;
+    font-weight: 600;
     color: var(--text-color-primary);
+    margin-bottom: 0.5rem;
+}
+
+.login-card .mat-card-subtitle {
+    font-size: 16px;
+    color: var(--text-color-secondary);
 }
 
 .full-width {
     width: 100%;
+    margin-bottom: 1rem;
+}
+
+.mat-form-field {
+    .mat-icon {
+        color: var(--text-color-secondary);
+        margin-right: 8px;
+    }
 }
 
 .login-button {
-    margin-top: 20px;
-    padding: 10px 0;
+    margin-top: 1.5rem;
+    padding: 12px 0;
     font-size: 16px;
+    font-weight: 500;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+
+    .mat-icon {
+        margin-right: 8px;
+    }
+
+    &:not([disabled]):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+}
+
+// Dark theme adjustments
+:host-context(.dark-theme) {
+    .login-card {
+        background: rgba(30, 30, 30, 0.95);
+    }
+
+    .mat-form-field {
+        .mat-icon {
+            color: var(--text-color-secondary);
+        }
+    }
 }
 
 .login-actions {

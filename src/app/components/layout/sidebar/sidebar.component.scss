@@ -44,6 +44,15 @@
             font-size: 1.5rem;
             font-weight: bold;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+
+            .sidebar-logo {
+                height: 40px;
+                width: auto;
+                filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+            }
         }
     }
 
