@@ -44,7 +44,6 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // If already authenticated, redirect to home
     if (this.authService.isAuthenticated()) {
       this.router.navigate(['/home']);
     }
@@ -52,20 +51,13 @@ export class LoginComponent implements OnInit {
 
   onSubmit(): void {
     if (this.loginForm.invalid) {
-      // console.log('Form is invalid:', this.loginForm.errors);
       return;
     }
-
-    // console.log('Submitting login form with values:', {
-    //   email: this.loginForm.value.email,
-    //   password: '[PROTECTED]'
-    // });
 
     this.authService.login(this.loginForm.value).subscribe({
       next: (response) => {
         // console.log('Login successful, response:', response);
         this.snackBar.open('Login successful', 'Close', { duration: 3000 });
-        // No need to navigate here, AuthService handles it.
       },
       error: (error) => {
         this.error = error.message || 'An unexpected error occurred.';

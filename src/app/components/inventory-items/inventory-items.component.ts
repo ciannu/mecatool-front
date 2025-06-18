@@ -60,7 +60,7 @@ export class InventoryItemsComponent implements OnInit {
     this.inventoryService.getAll().subscribe({
       next: (items) => {
         this.dataSource = items;
-        this.applyFilters(); // Apply filters initially after loading all items
+        this.applyFilters();
       },
       error: (error) => {
         this.snackBar.open('Error loading inventory items', 'Close', { duration: 3000 });

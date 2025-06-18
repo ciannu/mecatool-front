@@ -43,12 +43,12 @@ export class UserEditComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute
   ) {
-    this.userId = 0; // Initialize with a default value
+    this.userId = 0;
     this.userForm = this.fb.group({
       firstName: ['', Validators.required],
       lastName: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.minLength(6)], // Password is optional for edit
+      password: ['', Validators.minLength(6)],
       roleId: ['', Validators.required]
     });
   }
@@ -108,7 +108,6 @@ export class UserEditComponent implements OnInit {
       ...this.userForm.value
     };
 
-    // Remove password if it's not provided or empty for update
     if (!updatedUser.password) {
       delete updatedUser.password;
     }

@@ -69,7 +69,7 @@ export class ClientsComponent implements OnInit {
     if (confirm('Are you sure you want to delete this client?')) {
       this.clientService.delete(id).subscribe({
         next: () => {
-          this.loadClients(this.searchControl.value || ''); // Reload with current search query
+          this.loadClients(this.searchControl.value || '');
         },
         error: (err: any) => {
           console.error('Error deleting client:', err);

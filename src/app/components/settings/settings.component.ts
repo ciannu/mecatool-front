@@ -80,7 +80,6 @@ export class SettingsComponent implements OnInit {
           this.snackBar.open('Account updated successfully!', 'Close', {
             duration: 3000,
           });
-          // The user service will automatically update the userSubject and local storage
         },
         error: (error) => {
           this.snackBar.open(`Error updating account: ${error.message || error.error?.message}`, 'Close', {

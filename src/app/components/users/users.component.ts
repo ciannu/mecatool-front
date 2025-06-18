@@ -97,7 +97,7 @@ export class UsersComponent implements OnInit {
         this.userService.deleteUser(user.id!).subscribe({
           next: () => {
             this.snackBar.open('User deleted successfully!', 'Close', { duration: 3000 });
-            this.getAllUsers(); // Refresh the list
+            this.getAllUsers();
           },
           error: (err: any) => {
             console.error('Error deleting user:', err);

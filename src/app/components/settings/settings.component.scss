@@ -100,31 +100,30 @@
     }
 }
 
-/* Styles for Material Design form fields to integrate with theme - Replicating Client Form style */
 mat-form-field.mat-mdc-form-field {
-    background: var(--card-background); // Background for the entire form field container
+    background: var(--card-background);
     border-radius: 6px;
 }
 
 .mat-mdc-form-field-infix {
-    background: var(--card-background); // Background for the inner input area
-    color: var(--text-color); // Text color inside the input
+    background: var(--card-background);
+    color: var(--text-color);
     border-radius: 6px;
 }
 
 .mat-mdc-form-field-flex {
-    background: transparent !important; // Ensure flex container has no background
+    background: transparent !important;
 }
 
 .mat-mdc-form-field-appearance-fill .mat-mdc-text-field-wrapper {
-    background: transparent !important; // Remove default fill background
+    background: transparent !important;
     border-radius: 6px;
-    border: 2px solid var(--border-color); // Custom border for the wrapper
+    border: 2px solid var(--border-color);
     box-sizing: border-box;
 }
 
 .mat-mdc-form-field-label {
-    color: var(--text-color-secondary); // Label color
+    color: var(--text-color-secondary);
 }
 
 input.mat-mdc-input-element,
@@ -134,15 +133,13 @@ textarea.mat-mdc-input-element {
     caret-color: var(--text-color) !important;
 }
 
-// Hide default Material Design elements for fill appearance
 .mat-mdc-form-field-appearance-fill {
 
     .mat-mdc-form-field-underline,
     .mat-mdc-form-field-ripple {
-        display: none !important; // Hide underline and ripple
+        display: none !important;
     }
 
-    // When focused, change border color
     &.mat-focused {
         .mat-mdc-text-field-wrapper {
             border-color: var(--accent-color) !important;
@@ -153,7 +150,6 @@ textarea.mat-mdc-input-element {
         }
     }
 
-    // When invalid, change border and label color
     &.mat-form-field-invalid {
         .mat-mdc-text-field-wrapper {
             border-color: var(--error-color) !important;
@@ -165,18 +161,17 @@ textarea.mat-mdc-input-element {
     }
 }
 
-// Dark theme specific styles for form fields
 :host-context(.dark-theme) {
 
     mat-form-field.mat-mdc-form-field,
     .mat-mdc-form-field-infix {
-        background-color: #1e1e1e !important; // Darker background for dark theme
+        background-color: #1e1e1e !important;
         color: #e0e0e0 !important;
     }
 
     .mat-mdc-form-field-appearance-fill .mat-mdc-text-field-wrapper {
         background-color: #2a2a2a !important;
-        border: 2px solid #444 !important; // Darker border for dark theme
+        border: 2px solid #444 !important;
     }
 
     .mat-mdc-form-field-label {
@@ -210,7 +205,6 @@ textarea.mat-mdc-input-element {
     }
 }
 
-// Responsive adjustments
 @media (max-width: 768px) {
     .settings-container {
         padding: 1rem;

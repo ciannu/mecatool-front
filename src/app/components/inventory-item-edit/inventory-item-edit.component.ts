@@ -89,7 +89,7 @@ export class InventoryItemEditComponent implements OnInit {
     if (this.form.valid && this.itemId) {
       this.isLoading = true;
       const item: InventoryItem = this.form.value;
-      item.id = this.itemId; // Ensure the ID is set for update
+      item.id = this.itemId;
       this.inventoryService.update(this.itemId, item).subscribe({
         next: () => {
           this.snackBar.open('Item updated successfully!', 'Close', { duration: 3000 });

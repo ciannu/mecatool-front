@@ -105,7 +105,7 @@ export class UsersListComponent implements OnInit {
       this.userService.deleteUser(userId).subscribe({
         next: () => {
           this.snackBar.open('User deleted successfully!', 'Close', { duration: 3000 });
-          this.loadUsers(); // Refresh the list
+          this.loadUsers();
         },
         error: (err) => {
           console.error('Error deleting user:', err);

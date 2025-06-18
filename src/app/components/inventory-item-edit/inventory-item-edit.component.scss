@@ -4,7 +4,6 @@
     align-items: flex-start;
     padding: 20px;
     min-height: calc(100vh - 64px);
-    /* Adjust for header height */
 }
 
 .form-card {
@@ -43,7 +42,6 @@ button[mat-raised-button] {
     font-size: 16px;
 }
 
-/* Dark Mode Styles */
 body.dark-mode {
     .form-card {
         background-color: var(--dark-background-light);

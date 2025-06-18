@@ -97,6 +97,5 @@ export class MechanicsComponent implements OnInit {
   }
 
   setupSearch(): void {
-    // Implementation of setupSearch method
   }
 } 

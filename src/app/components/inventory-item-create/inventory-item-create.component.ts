@@ -48,7 +48,6 @@ export class InventoryItemCreateComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // No specific initialization needed for creation mode
   }
 
   initForm(): void {

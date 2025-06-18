@@ -3,7 +3,6 @@
     justify-content: center;
     padding: 20px;
     min-height: calc(100vh - 64px);
-    /* Adjust based on header height */
     background-color: var(--background-color);
 }
 
@@ -121,7 +120,6 @@
     color: var(--text-color-secondary);
 }
 
-/* Dark theme adjustments */
 :host-context(.dark-theme) {
     .notifications-card {
         background-color: var(--card-background-dark);

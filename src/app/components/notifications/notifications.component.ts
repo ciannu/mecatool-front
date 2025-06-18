@@ -26,7 +26,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 })
 export class NotificationsComponent implements OnInit {
   allNotifications: Notification[] = [];
-  selectedTabIndex: number = 0; // Only one tab now
+  selectedTabIndex: number = 0;
 
   constructor(
     private notificationService: NotificationService,
@@ -47,7 +47,7 @@ export class NotificationsComponent implements OnInit {
     if (notificationId) {
       this.notificationService.deleteNotification(notificationId).subscribe(() => {
         this.snackBar.open('Notification deleted', 'Close', { duration: 2000 });
-        this.loadAllNotifications(); // Refresh the list
+        this.loadAllNotifications();
       }, error => {
         console.error('Error deleting notification:', error);
         this.snackBar.open('Failed to delete notification', 'Close', { duration: 3000 });
@@ -56,6 +56,5 @@ export class NotificationsComponent implements OnInit {
   }
 
   onTabChange(event: any): void {
-    // No longer needed as there's only one tab
   }
 } 

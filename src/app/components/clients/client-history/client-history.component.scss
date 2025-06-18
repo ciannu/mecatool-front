@@ -112,7 +112,6 @@
     }
 }
 
-// Dark theme specific styles
 :host-context(.dark-theme) {
     .header .actions button {
         background: var(--accent-color) !important;
